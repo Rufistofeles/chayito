@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chayito busca familia</title>
+<meta name="description" content="Chayito es una cachorrita rescatada de 5 a 6 meses, juguetona y amigable. Está en Huixquilucan y busca una familia para siempre.">
+<meta name="theme-color" content="#e6ebdd">
+<meta property="og:title" content="Chayito busca familia">
+<meta property="og:description" content="Cachorrita rescatada de 5 a 6 meses, juguetona y amigable. Está en Huixquilucan.">
+<meta property="og:url" content="https://rufistofeles.dev/chayito/">
+<meta property="og:image" content="https://rufistofeles.dev/chayito/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Fraunces:opsz,wght,SOFT@9..144,600,100&display=swap" rel="stylesheet">
+<style>
+/* Paleta 4, Sombra de pasto. Para cambiar de paleta basta reemplazar estos valores. */
+:root {
+  color-scheme: light;
+  --fondo: #e6ebdd;
+  --superficie: #f7f8f1;
+  --texto: #1f2e25;
+  --secundario: #4a5b50;
+  --accion: #2e6247;
+  --accion-texto: #ffffff;
+  --acento: #9a5f1c;
+  --borde: #74877a;
+  --error: #a82a1e;
+  --foco: #6b3a12;
+  --gutter: clamp(20px, 5vw, 64px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font: 400 1.125rem/1.6 Figtree, system-ui, sans-serif;
+}
+img, video { display: block; max-width: 100%; height: auto; }
+h1, h2 {
+  margin: 0;
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 600;
+  font-variation-settings: "SOFT" 100;
+  line-height: 1.08;
+}
+h2 { font-size: clamp(2.1rem, 8vw, 3.25rem); }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+.pared { padding: clamp(56px, 10vw, 104px) var(--gutter); }
+.ancho { max-width: 1080px; margin-inline: auto; }
+.claro { background: var(--superficie); }
+
+.boton {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  padding: 1em 1.4em;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accion);
+  color: var(--accion-texto);
+  font: 800 1.125rem/1.2 Figtree, system-ui, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Lo primero que se ve es su cara */
+.inicio-foto img {
+  width: 100%;
+  aspect-ratio: 1 / 1.02;
+  object-fit: cover;
+  object-position: 50% 37%;
+  border-radius: 0 0 32px 32px;
+}
+.inicio-texto { padding: 24px var(--gutter) 48px; }
+.se-busca { color: var(--secundario); font-weight: 600; font-size: 1.2rem; }
+h1 { color: var(--accion); font-size: clamp(3.5rem, 19vw, 7.5rem); line-height: 1; margin-bottom: 12px; }
+.inicio-texto p:not(.se-busca) { max-width: 30ch; font-size: 1.25rem; line-height: 1.4; margin-bottom: 24px; }
+
+/* Cómo es */
+.ficha .ancho { display: grid; gap: 40px; }
+.ficha p { margin-top: 16px; max-width: 56ch; }
+dl { margin: 24px 0 0; }
+dt { color: var(--secundario); font-size: 1rem; margin-top: 14px; }
+dd { margin: 0; font-weight: 600; }
+.ficha video { width: 100%; max-width: 400px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 24px; background: var(--fondo); }
+
+/* Fotos */
+.fotos { padding-inline: 0; }
+.fotos h2 { max-width: 1080px; margin-inline: auto; padding-inline: var(--gutter); box-sizing: content-box; }
+.tira {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(78vw, 340px);
+  gap: 16px;
+  margin-top: 28px;
+  padding: 4px var(--gutter) 16px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--gutter);
+}
+.tira:focus-visible { outline-offset: -3px; }
+figure { margin: 0; scroll-snap-align: start; }
+figure img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px; }
+figcaption { margin-top: 10px; font-weight: 600; }
+
+/* Adoptar */
+.pasos .ancho { display: grid; gap: 32px; }
+.pasos h3 { font-size: 1.3rem; font-weight: 800; margin: 0 0 8px; }
+.pasos ul, .pasos ol { margin: 0; padding-left: 1.25em; }
+.pasos li { margin-top: 8px; max-width: 46ch; }
+.pasos li::marker { color: var(--acento); font-weight: 800; }
+
+/* Cuestionario */
+.cuestionario .ancho { max-width: 620px; }
+.cuestionario h2 + p { margin-top: 14px; }
+form { display: grid; gap: 22px; margin-top: 32px; }
+label { display: block; font-weight: 600; line-height: 1.35; }
+input:not([type=checkbox]), select, textarea {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: .7em .85em;
+  border: 2px solid var(--borde);
+  border-radius: 14px;
+  background: var(--superficie);
+  color: var(--texto);
+  font: inherit;
+  font-weight: 400;
+}
+textarea { min-height: 6em; resize: vertical; }
+:user-invalid:not(form) { border-color: var(--error); outline-color: var(--error); }
+form:has(option:checked:not([data-renta])) .permiso { display: none; }
+.casilla { display: grid; grid-template-columns: 1.5em 1fr; gap: 10px; align-items: start; font-weight: 400; }
+.casilla input { width: 1.4em; height: 1.4em; margin: .05em 0 0; accent-color: var(--accion); }
+.nota { color: var(--secundario); font-size: 1rem; margin-top: -8px; }
+
+/* Pie */
+footer { background: var(--accion); color: var(--accion-texto); }
+footer :focus-visible { outline-color: var(--accion-texto); }
+footer p { margin-top: 12px; max-width: 46ch; }
+footer .boton { margin-top: 24px; background: var(--superficie); color: var(--accion); }
+footer .directo { margin-top: 24px; }
+
+@media (min-width: 860px) {
+  .inicio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    max-width: 1208px;
+    margin-inline: auto;
+    padding: 40px var(--gutter);
+  }
+  .inicio-foto { order: 2; }
+  .inicio-foto img { max-height: 84vh; border-radius: 32px; }
+  .inicio-texto { padding: 0; }
+  .ficha .ancho { grid-template-columns: 1fr minmax(0, 360px); gap: 72px; align-items: center; }
+  .pasos .ancho { grid-template-columns: 1fr 1fr; align-items: start; }
+  .pasos h2 { grid-column: 1 / -1; }
+  .tira { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); grid-auto-columns: auto; max-width: 1080px; margin-inline: auto; box-sizing: content-box; overflow: visible; gap: 32px 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<header class="inicio">
+  <div class="inicio-foto">
+    <img src="img/hero.jpg" width="1125" height="1500" fetchpriority="high"
+         alt="Chayito, cachorrita color caramelo con arnés turquesa, echada en el pasto y mirando de frente a la cámara.">
+  </div>
+  <div class="inicio-texto">
+    <p class="se-busca">Se busca familia para</p>
+    <h1>Chayito</h1>
+    <p>Tiene 5 a 6 meses, está en Huixquilucan y quiere jugar contigo.</p>
+    <a class="boton" href="#adoptar">Quiero adoptarla</a>
+  </div>
+</header>
+
+<main>
+  <section class="pared ficha claro">
+    <div class="ancho">
+      <div>
+        <h2>Así es la Chayis</h2>
+        <p>Valeria y yo la rescatamos de la calle y hoy está en un hogar temporal, lista para una casa definitiva. Le encanta morder su hueso, rodar en el pasto y echarse al sol. Con la gente es puro cariño.</p>
+        <dl>
+          <dt>Edad</dt>
+          <dd>5 a 6 meses</dd>
+          <dt>Carácter</dt>
+          <dd>Juguetona y amigable</dd>
+          <dt>Cómo es</dt>
+          <dd>Color caramelo, patitas blancas y orejas dobladas</dd>
+          <dt>Dónde está</dt>
+          <dd>Huixquilucan, Estado de México</dd>
+          <dt>Salud</dt>
+          <dd>Pregunta por sus vacunas y su esterilización en WhatsApp</dd>
+        </dl>
+      </div>
+      <video src="chayito.mp4" poster="img/video.jpg" autoplay muted loop playsinline controls preload="metadata"
+             aria-label="Chayito rueda en el pasto jugando con su hueso turquesa."></video>
+    </div>
+  </section>
+
+  <section class="pared fotos">
+    <h2>Un día con Chayito</h2>
+    <div class="tira" tabindex="0" role="group" aria-label="Fotos de Chayito. Desliza para ver más.">
+      <figure><img loading="lazy" src="img/mirada.jpg" alt="Primer plano de la cara de Chayito, echada al sol."><figcaption>Esa mirada no se le niega a nadie</figcaption></figure>
+      <figure><img loading="lazy" src="img/hueso.jpg" alt="Chayito acostada de lado mordiendo un hueso turquesa, con pañoleta rosa."><figcaption>Su hueso va con ella a todos lados</figcaption></figure>
+      <figure><img loading="lazy" src="img/amigo.jpg" alt="Chayito sentada en el pasto junto a un perro de pelo rizado."><figcaption>Convive con otros perros</figcaption></figure>
+      <figure><img loading="lazy" src="img/correa.jpg" alt="Chayito de pie en el pasto con arnés y correa."><figcaption>Ya pasea con arnés y correa</figcaption></figure>
+      <figure><img loading="lazy" src="img/panoleta.jpg" alt="Chayito echada en el pasto con pañoleta rosa y su hueso enfrente."><figcaption>Posa mejor que muchos</figcaption></figure>
+      <figure><img loading="lazy" src="img/pelota.jpg" alt="Chayito de espaldas, sentada en el pasto junto a una pelota."><figcaption>Lista para el siguiente juego</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="pared pasos claro">
+    <div class="ancho">
+      <h2>Cómo adoptarla</h2>
+      <div>
+        <h3>Lo que pedimos</h3>
+        <ul>
+          <li>Ser mayor de edad y mostrar una identificación</li>
+          <li>Que toda tu familia esté de acuerdo</li>
+          <li>Que viva con la familia, nunca en azotea ni con cadena</li>
+          <li>Un espacio seguro del que no pueda escaparse</li>
+          <li>Darle veterinario, vacunas y esterilización</li>
+          <li>Mandarnos noticias de ella después de la adopción</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Los pasos</h3>
+        <ol>
+          <li>Llenas el cuestionario de aquí abajo.</li>
+          <li>Platicamos por WhatsApp y hacemos una videollamada.</li>
+          <li>Conoces a Chayito y vemos dónde va a vivir.</li>
+          <li>Firmamos un acuerdo de adopción y se va contigo.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="pared cuestionario" id="adoptar">
+    <div class="ancho">
+      <h2>Cuéntanos de tu hogar</h2>
+      <p>Toma un par de minutos. Tus respuestas salen en un mensaje de WhatsApp que tú revisas y envías, y lo demás lo platicamos ahí. Esta página no guarda nada.</p>
+      <form id="form">
+        <label>Tu nombre
+          <input name="nombre" required maxlength="80" autocomplete="name"></label>
+        <label>¿En qué colonia y municipio o alcaldía vives?
+          <input name="zona" required maxlength="120"></label>
+        <label>¿Dónde vivirá Chayito?
+          <select name="vivienda" required>
+            <option value="">Elige una opción</option>
+            <option>Casa propia</option>
+            <option data-renta>Casa rentada</option>
+            <option>Departamento propio</option>
+            <option data-renta>Departamento rentado</option>
+          </select></label>
+        <label class="permiso">¿Te permiten tener perros donde rentas?
+          <input name="permiso" maxlength="120"></label>
+        <label>¿Quiénes viven contigo? ¿Hay niños u otras mascotas?
+          <textarea name="familia" required maxlength="400"></textarea></label>
+        <label>¿Por qué quieres adoptar a Chayito?
+          <textarea name="motivo" required maxlength="500"></textarea></label>
+        <label class="casilla"><input type="checkbox" required> <span>Soy mayor de edad.</span></label>
+        <button class="boton" type="submit">Enviar por WhatsApp</button>
+        <p class="nota">Se abre WhatsApp con tu mensaje listo para enviar.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="pared">
+  <div class="ancho">
+    <h2>¿No puedes adoptarla?</h2>
+    <p>Compartir también la ayuda. Su familia puede estar entre tus contactos.</p>
+    <button class="boton" id="compartir" type="button">Compartir a Chayito</button>
+    <p class="directo"><a id="directo" href="#">¿Tienes una duda? Escríbenos por WhatsApp</a></p>
+  </div>
+</footer>
+
+<script>
+// Número real aquí: 52 + 1 + 10 dígitos, sin espacios.
+const WHATSAPP = '5215540298921';
+
+const wa = texto => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
+
+document.getElementById('directo').href = wa('Hola, tengo una duda sobre la adopción de Chayito.');
+
+document.getElementById('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const respuestas = [...e.target.elements]
+    .filter(campo => campo.name && campo.value.trim() && campo.offsetParent)
+    .map(campo => `*${campo.labels[0].firstChild.textContent.trim()}*\n${campo.value.trim()}`);
+  location.href = wa(['Hola, quiero adoptar a Chayito.', ...respuestas, 'Soy mayor de edad.'].join('\n\n'));
+});
+
+document.getElementById('compartir').addEventListener('click', () => {
+  const texto = 'Chayito busca familia. Es una cachorrita rescatada, juguetona y amigable, en Huixquilucan.';
+  if (navigator.share) navigator.share({ title: 'Chayito busca familia', text: texto, url: location.href }).catch(() => {});
+  else open(`https://wa.me/?text=${encodeURIComponent(`${texto} ${location.href}`)}`, '_blank', 'noopener');
+});
+
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelector('video').pause();
+</script>
+</body>
+</html>
